@@ -1,11 +1,9 @@
 package testpoi.testpoi;
 
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
-import org.apache.poi.wp.usermodel.HeaderFooterType;
 import org.apache.poi.xwpf.model.XWPFHeaderFooterPolicy;
 import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
@@ -24,13 +22,13 @@ public class App {
 			XWPFDocument doc = new XWPFDocument();
 			CTSectPr sectPr = doc.getDocument().getBody().addNewSectPr();
 			XWPFHeaderFooterPolicy policy = new XWPFHeaderFooterPolicy(doc, sectPr);
-			FileOutputStream out = new FileOutputStream(new File("C:/Users/yogac/documents/brittany.docx"));
+			FileOutputStream out = new FileOutputStream(new File("C:/Users/yogac/documents/testFile.docx"));
 
 			CTP ctpHeader = CTP.Factory.newInstance();
 			CTR ctrHeader = ctpHeader.addNewR();
 			CTText ctHeader = ctrHeader.addNewT();
 			String headerText = "The best Company in the world";
-			
+
 			ctHeader.setStringValue(headerText);
 			XWPFParagraph headerParagraph = new XWPFParagraph(ctpHeader, doc);
 			XWPFParagraph[] parsHeader = new XWPFParagraph[1];
@@ -43,16 +41,12 @@ public class App {
 			r.setBold(true);
 			r.setText("I was centered in eclipse. ");
 			r.addBreak();
-		
+
 			r.setText("Another text?");
 
 			doc.write(out);
 			out.close();
-			FileInputStream in = new FileInputStream(new File("C/Users/yogac/documents/logo.png"));
-			XWPFFooter footer = doc.createFooter(null);
-
-			footer.addPictureData(in, 1);
-			in.close();
+		
 		} catch (Exception e) {
 			e.getStackTrace();
 		}
